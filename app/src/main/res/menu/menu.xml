@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/ActionText"
+        app:showAsAction="ifRoom"
+        android:actionLayout="@layout/cutom_actionbar"
+        android:title="score"
+        />
+    <item
+        android:id="@+id/scoreval"
+        app:showAsAction="ifRoom"
+        android:title=" "
+        />
+
+
+
+</menu>

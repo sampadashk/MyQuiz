@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">MyQuiz</string>
+    <string name="correct">Correct ans</string>
+    <string name="wrong">Wrong ans</string>
+    <string name="noans">No option selected</string>
+
+
+</resources>
