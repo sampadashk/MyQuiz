@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {
+    public static final String Tagscorecount="count";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,8 +17,10 @@ public class MainActivity extends AppCompatActivity {
         if(f==null)
         {
             f=new QuizFragment();
+
             fm.beginTransaction().add(R.id.fragment_container,f).commit();
         }
+
 
 
     }

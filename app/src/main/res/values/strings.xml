@@ -3,6 +3,8 @@
     <string name="correct">Correct ans</string>
     <string name="wrong">Wrong ans</string>
     <string name="noans">No option selected</string>
+    <string name="saved_high_score"></string>
+    <string name="saved_high_score_default">0</string>
 
 
 </resources>

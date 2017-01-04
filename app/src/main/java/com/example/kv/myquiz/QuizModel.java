@@ -1,10 +1,12 @@
 package com.example.kv.myquiz;
 
+import java.io.Serializable;
+
 /**
  * Created by KV on 26/12/16.
  */
 
-public class QuizModel {
+public class QuizModel implements Serializable {
     int id;
     String ques;
     String op1;
@@ -36,5 +38,9 @@ public class QuizModel {
     public String getAns()
     {
         return ans;
+    }
+    public String getQues()
+    {
+        return ques;
     }
 }

@@ -7,6 +7,7 @@ package com.example.kv.myquiz;
 public class Quiz {
     private String name;
     int res;
+
     Quiz(String nm,int rs)
     {
         name=nm;

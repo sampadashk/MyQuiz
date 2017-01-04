@@ -1,35 +1,56 @@
 package com.example.kv.myquiz;
 
-import android.app.Activity;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.v4.view.MenuItemCompat;
+import android.os.Handler;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.support.v7.app.ActionBarActivity;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+
+import static android.preference.PreferenceManager.getDefaultSharedPreferences;
 
 /**
  * Created by KV on 25/12/16.
  */
 
-public class DetailClass extends AppCompatActivity {
+public class DetailClass extends AppCompatActivity implements View.OnClickListener {
     public static final String TAGV = "tagvalue";
-    int userScore = 0;
+    public static final String TAGScore = "totalscore";
+
+    ArrayList<QuizModel> missedList;
+
+    public int userScore = 0;
     TextView tvw;
-    RadioButton r1, r2, r3, r4;
-    RadioGroup rg;
-    Button b;
-    Button sub;
+    Button r1, r2, r3, r4;
+    int i = 1;
+    String userSelected;
+    public SharedPreferences prefs;
+
+
+
+    Button clickbut;
+    Button backbut;
+    ProgressBar pbar;
+    TextView Qser;
+
     Cursor rs;
+
 
     //QuizModel Sci=new QuizModel("Which of the following is not a primary colour", "red", "blue", "yellow", "green", "yellow");
    /* QuizModel[] Sci = new QuizModel[]{new QuizModel("Which of the following is not a primary colour", "red", "blue", "yellow", "green", "yellow"),
@@ -45,19 +66,36 @@ public class DetailClass extends AppCompatActivity {
             */
     DBHelper dbHelper;
 
+    private void setScoreResult(int scoreResult) {
+        //prefs = getDefaultSharedPreferences(getApplicationContext());
+       // SharedPreferences.Editor editor = prefs.edit();
+       // Log.d("scoredetail","score"+scoreResult);
+        //editor.putInt(getString(R.string.saved_high_score),scoreResult);
+       // editor.commit();
+       Intent data = new Intent(DetailClass.this, MainActivity.class);
+        //startActivity(data);
+        data.putExtra(TAGScore, scoreResult);
+        setResult(RESULT_OK, data);
+
+    }
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         setContentView(R.layout.detail_layout);
+        missedList = new ArrayList<>();
         tvw = (TextView) findViewById(R.id.quiztext);
-        r1 = (RadioButton) findViewById(R.id.optbut1);
-        r2 = (RadioButton) findViewById(R.id.optbut2);
-        r3 = (RadioButton) findViewById(R.id.optbut3);
-        r4 = (RadioButton) findViewById(R.id.optbut4);
+        r1 = (Button) findViewById(R.id.opbut1);
+        r2 = (Button) findViewById(R.id.opbut2);
+        r3 = (Button) findViewById(R.id.opbut3);
+        r4 = (Button) findViewById(R.id.opbut4);
+
         String titli = getIntent().getStringExtra(TAGV);
+        pbar = (ProgressBar) findViewById(R.id.firstBar);
+        Qser = (TextView) findViewById(R.id.qsnum);
+        backbut = (Button) findViewById(R.id.backbut);
         rs = null;
-        rg = (RadioGroup) findViewById(R.id.radiogrp);
-        sub = (Button) findViewById(R.id.submitbut);
 
 
 //        dbHelper.insertData(Sci);
@@ -70,6 +108,7 @@ public class DetailClass extends AppCompatActivity {
 
 //           this.dbHelper.insertData(Sci);
         rs = dbHelper.getData(titli);
+        backbut.setVisibility(View.INVISIBLE);
         Log.d("cursorcount", "count" + rs.getCount());
         if (rs == null) {
             Log.d("tagnullchk", "yes");
@@ -86,7 +125,20 @@ public class DetailClass extends AppCompatActivity {
             r3.setText(rs.getString(4));
             r4.setText(rs.getString(5));
         }
-        sub.setOnClickListener(new View.OnClickListener() {
+        r1.setOnClickListener(this);
+        r2.setOnClickListener(this);
+        r3.setOnClickListener(this);
+        r4.setOnClickListener(this);
+        pbar.setVisibility(View.VISIBLE);
+        pbar.setScaleY(3f);
+        pbar.setProgress(i);
+        pbar.setBackgroundColor(Color.GRAY);
+
+        pbar.setMax(5);
+        String st = i + "/5";
+        Qser.setText(st);
+
+       /* rg.setOnClickListener(new RadioGroup.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int radbut = rg.getCheckedRadioButtonId();
@@ -94,7 +146,7 @@ public class DetailClass extends AppCompatActivity {
                 Log.d("radcheck", "val" + radbut);
 
                 switch (radbut) {
-                    case R.id.optbut1:
+                 case R.id.optbut1:
                         userSelected = rs.getString(2);
                         break;
                     case R.id.optbut2:
@@ -108,6 +160,11 @@ public class DetailClass extends AppCompatActivity {
                         break;
 
 
+
+                }
+                if(rs.isLast())
+                {
+                    b.setVisibility(View.INVISIBLE);
                 }
                 Log.d("userse", userSelected);
                 if (userSelected.equals(" ")) {
@@ -123,19 +180,64 @@ public class DetailClass extends AppCompatActivity {
 
             }
         });
+        */
 
 
 
 
-        b = (Button) findViewById(R.id.nextbut);
-        b.setOnClickListener(new View.OnClickListener() {
+       /* b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(rs.isFirst()) {
+                    if (userSelected.equals(" ")) {
+                        QuizModel qm = new QuizModel(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7));
+                        missedList.add(qm);
+                        Toast.makeText(DetailClass.this, R.string.noans, Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+
+
 
                 if (rs.moveToNext()) {
+                    userSelected=" ";
+                    i += 1;
+
+                    pbar.setProgress(i);
+
+                    String st = i + "/5";
+                    Qser.setText(st);
+                    if(rs.isLast())
+                    {
+                        if(userSelected.equals(" ")) {
+                            QuizModel qm = new QuizModel(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7));
+                            missedList.add(qm);
+                            Toast.makeText(DetailClass.this, R.string.noans, Toast.LENGTH_SHORT).show();
+
+                            lastfunct();
+
+                        }
+                    }
+                    if (userSelected.equals(" ")&&!(rs.isLast())) {
+                        QuizModel qm = new QuizModel(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7));
+                        missedList.add(qm);
+                        Toast.makeText(DetailClass.this, R.string.noans, Toast.LENGTH_SHORT).show();
+
+
+
+                    }
+
+
+
+
+
 
                     String nam = rs.getString(rs.getColumnIndex(DBHelper.questionseries));
                     tvw.setText(nam);
+                    r1.setEnabled(true);
+                    r2.setEnabled(true);
+                    r3.setEnabled(true);
+                    r4.setEnabled(true);
                     r1.setText(rs.getString(2));
                     r2.setText(rs.getString(3));
                     r3.setText(rs.getString(4));
@@ -143,8 +245,9 @@ public class DetailClass extends AppCompatActivity {
                 }
 
 
+
             }
-        });
+        });*/
 
 
     }
@@ -159,15 +262,167 @@ public class DetailClass extends AppCompatActivity {
 
         return true;
     }
+
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         MenuItem totscore = menu.findItem(R.id.scoreval);
         totscore.setTitle(String.valueOf(userScore));
 
 
-
         return super.onPrepareOptionsMenu(menu);
     }
+
+    @Override
+    public void onClick(View v) {
+        final int redColor = 0xFFFF0000;
+        // final int greencolor=0x006600;
+
+        // final Drawable original=v.getBackground();
+        int ide = v.getId();
+        clickbut = (Button) findViewById(ide);
+
+        final Drawable bkgbut = clickbut.getBackground();
+
+
+        switch (v.getId()) {
+            case R.id.opbut1:
+                userSelected = rs.getString(2);
+                r1.setEnabled(false);
+                r2.setEnabled(false);
+                r3.setEnabled(false);
+                r4.setEnabled(false);
+                break;
+            case R.id.opbut2:
+                userSelected = rs.getString(3);
+                r2.setEnabled(false);
+                r3.setEnabled(false);
+                r4.setEnabled(false);
+                r1.setEnabled(false);
+                break;
+            case R.id.opbut3:
+                userSelected = rs.getString(4);
+                r4.setEnabled(false);
+                r1.setEnabled(false);
+                r2.setEnabled(false);
+                r3.setEnabled(false);
+                break;
+            case R.id.opbut4:
+                userSelected = rs.getString(5);
+                r2.setEnabled(false);
+                r1.setEnabled(false);
+                r3.setEnabled(false);
+                r4.setEnabled(false);
+                break;
+
+        }
+
+        Log.d("userse", userSelected);
+
+        if (userSelected.equals(rs.getString(6))) {
+
+            // b.setBackgroundColor(Color.GREEN);
+
+
+            userScore += 1;
+            invalidateOptionsMenu();
+            clickbut.getBackground().setColorFilter(Color.GREEN, PorterDuff.Mode.MULTIPLY);
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    clickbut.getBackground().clearColorFilter();
+                }
+            }, 100);
+
+
+            Toast.makeText(DetailClass.this, R.string.correct, Toast.LENGTH_SHORT).show();
+
+        } else {
+            clickbut.getBackground().setColorFilter(redColor, PorterDuff.Mode.MULTIPLY);
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    clickbut.getBackground().clearColorFilter();
+                }
+            }, 200);
+
+
+            Toast.makeText(DetailClass.this, R.string.wrong, Toast.LENGTH_SHORT).show();
+            QuizModel qm = new QuizModel(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7));
+            missedList.add(qm);
+        }
+        if (rs.isLast()) {
+            // b.setVisibility(View.INVISIBLE);
+            lastfunct();
+
+
+        }
+        if (rs.moveToNext()) {
+
+            i += 1;
+
+            pbar.setProgress(i);
+
+            String st = i + "/5";
+            Qser.setText(st);
+            String nam = rs.getString(rs.getColumnIndex(DBHelper.questionseries));
+            tvw.setText(nam);
+            r1.setEnabled(true);
+            r2.setEnabled(true);
+            r3.setEnabled(true);
+            r4.setEnabled(true);
+            r1.setText(rs.getString(2));
+            r2.setText(rs.getString(3));
+            r3.setText(rs.getString(4));
+            r4.setText(rs.getString(5));
+
+        }
+    }
+
+
+    public void lastfunct() {
+
+
+
+        AlertDialog.Builder altbut = new AlertDialog.Builder(this);
+        altbut.setTitle("Score");
+        altbut.setMessage("Score: " + userScore);
+        altbut.setNeutralButton("OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        AlertDialog alert = altbut.create();
+        alert.show();
+        setScoreResult(userScore);
+
+        if (!missedList.isEmpty()) {
+            backbut.setVisibility(View.VISIBLE);
+            backbut.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(DetailClass.this, MissedQs.class);
+                    intent.putExtra(MissedQs.tagmissed, missedList);
+                    //intent.putExtra(MissedQs.TAGCount,userScore);
+                    startActivity(intent);
+
+                }
+            });
+
+
+        }
+
+    }
 }
+
+
+
+
+
+
+
+
 
 

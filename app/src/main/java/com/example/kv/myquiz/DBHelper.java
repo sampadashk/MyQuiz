@@ -19,7 +19,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     DBHelper(Context ct)
     {
-        super(ct,Database_name,null,21);
+        super(ct,Database_name,null,23);
     }
 
     public void onCreate(SQLiteDatabase db)
@@ -45,7 +45,56 @@ public class DBHelper extends SQLiteOpenHelper {
                 new QuizModel("Which of the following do not belong to solar system","Asteroids","Comets","Planets","Nebulae","Nebulae","Geography"),
                 new QuizModel("Ozone holes are more pronounced at the ","Equator","Tropic of Cancer","Poles","Tropic of Capricorn","Poles","Geography"),
                 new QuizModel("The great Victoria Desert is located in","Australia","Canada","North America","West Africa","Australia","Geography"),
-                new QuizModel("Mount Etna, one of the world's most active volcanoes, is located in which country","France","Italy","Dubai","Egypt","Italy","Geography")
+                new QuizModel("Mount Etna, one of the world's most active volcanoes, is located in which country","France","Italy","Dubai","Egypt","Italy","Geography"),
+                new QuizModel("Synonym of Calumniate is","To accuse falsely","To accuse truthfully","To denounce","To ditch","To accuse falsely","Vocabulary"),
+                new QuizModel("Meaning of Commence","To End","To Begin","Nearing Finish","To Run","To Begin","Vocabulary"),
+                new QuizModel("Detest means","Love","To hate intensely","Neglect","To support","To hate intensely","Vocabulary"),
+                new QuizModel("Synonym of Beset","Plead","Deny","Deprive","Perplex","Perplex","Vocabulary"),
+                new QuizModel("Synonym of ARDENT","Eager","YouthfuL","Silvery","Difficult","Eager","Vocabulary"),
+                new QuizModel("Who was the first Indian to win the World Amateur Billiards title","Geet Sethi","Wilson Jones","Michael Ferreira","Manoj Kothari","Wilson Jones","Sports"),
+                new QuizModel("Who has won the 2016 Women’s Singles Wimbledon Championship","Simona Halep","Serena Williams","Angelique Kerber","Andy Murray","Serena Williams","Sports"),
+                new QuizModel("Who was the goodwill ambassador for the 35th National Games of India","Sachin Tendulkar","Pankaj Advani","Sania Mirza","Saina Nehwal","Sachin Tendulkar","Sports"),
+                new QuizModel("Who was the first person to make three test centuries in his first innings as a captain","Virat Kohli","M S Dhoni","Steve Smith","Hashim Amla","Virat Kohli","Sports"),
+                new QuizModel("Who among the following cricketer is referred to as The Don","Vivians Richard","Donald Bradman","Gary Sobers","Wasim Akram","Donald Bradman","Sports"),
+                new QuizModel("When ancient Olympic games first held","776 BC","780 BC","790 BC","800 BC","776 BC","History"),
+                new QuizModel("In which year American Revolution started ","1774","1775","1776","1777","1775","History"),
+                new QuizModel("In which year Hitler became the Chancellor of Germany","1932","1933","1944","1945","1933","History"),
+                new QuizModel("The Renaissance scientist who explained how planets moved around the sun was","Kepler","Rebelais","Francis Bacorr","Gutenberg","Kepler","History"),
+                new QuizModel("Russian revolutionary, who founded the Communist Party was","Karl Marx","Stalin","Lenin","Trotsky","Lenin","History"),
+                new QuizModel("Synonym of HAGGLE ","Crisis","Ignore","Impeach","Bargain","Bargain","Vocabulary"),
+                new QuizModel("Synonym of ZENITH ","Middle","Under","Pinnacle","Nadir","Pinnacle","Vocabulary"),
+                new QuizModel("Synonym of IMPASSE","Stalemate","Impossibility","Difficulty","Confrontation","Stalemate","Vocabulary"),
+                new QuizModel("Synonym of CONCEAL","Unfold","Reveal","Open","Discover","Reveal","Vocabulary"),
+                new QuizModel("Synonym of TAINT","Soil","STAIN","dirty","corrupt","corrupt","Vocabulary"),
+                new QuizModel("A naturally occurring substance that has a definite chemical composition is a","mineral","compound","METAL","rock","compound","Geography"),
+                new QuizModel("Which country has no known mineral deposits","Hungry","Austria","Netherlands","Switzerland","Switzerland","Geography"),
+                new QuizModel("The largest producer of mica in the world is","Australia","India","China","Korea","India","Geography"),
+                new QuizModel("Silicon, used in the computer industry is obtained from","quartz","bauxite","cuprite","Magnetite","quartz","Geography"),
+                new QuizModel("Petroleum means","Land Oil","Black Oil","Shell Oil","Rock Oil","Rock Oil","Geography"),
+                new QuizModel("Which of the following is necessary for burning","Nitrogen","Carbon","Oxygen","Petrol","Oxygen","Science"),
+                new QuizModel("Enzymes and anti-bodies are mainly made of","Vitamins","Proteins","Carbohydrates","Fats","Proteins","Science"),
+                new QuizModel("Which gas in the atmosphere protects us from harmful ultraviolet radiation","Carbon Dioxide","Oxygen","Nitrogen","Ozone","Ozone","Science"),
+                new QuizModel("The SI unit of charge is","Ampere","Coulomb","Ohm","Volt","Coulomb","Science"),
+                new QuizModel("The lifespan of Red Blood Cells is","60 days","120 days","180 days","240 days","120 days","Science"),
+                new QuizModel("Archery is the national sport of which country","Afghanistan","Japan","India","Bhutan","Bhutan","Sports"),
+                new QuizModel("When was the Commonwealth game started","1930","1934","1945","1950","1930","Sports"),
+                new QuizModel("Which country has won Cricket world cup for the maximum number of times","West Indies","Sri Lanka","Australia","India","Australia","Sports"),
+                new QuizModel("Football World Cup has been won by which country for the maximum number of times","Brazil","Uruguay","Germany","Italy","Brazil","Sports"),
+                new QuizModel("First Olympic Games was held in","Jamacia","Canada","England","Australia","Canada","Sports"),
+                new QuizModel("What was Walt Disney's Mickey Mouse's original name","Manville","Melvin","Mortimer","Murgatroyd","Mortimer","Entertainment"),
+                new QuizModel("which singer has won the most grammys","Georg Solti","Quincy Jones","Alison Krauss","Pierre Boulez","Georg Solti","Entertainment"),
+                new QuizModel("Who won Oscar award best actor winner 2015","Eddie Redmayne","Bradley Cooper","Steve Carell","Michael Keaton","Eddie Redmayne","Entertainment"),
+                new QuizModel("First Sound film THE JAZZ SINGER was released in which year","1927","1925","1920","1915","1927","Entertainment"),
+                new QuizModel("Which movie won OSCARS BEST PICTURE 2016","The Big Short","Brooklyn","Spotlight","Room","Spotlight","Entertainment")
+
+
+
+
+
+
+
+
+
 
         };
         Log.d("taglen","len"+Sci.length);
