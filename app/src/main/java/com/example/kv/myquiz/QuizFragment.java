@@ -37,7 +37,7 @@ public class QuizFragment extends Fragment {
 
 
 
-    Quiz[] q = new Quiz[]{new Quiz("Science", R.drawable.sci), new Quiz("History", R.drawable.hist), new Quiz("Entertainment", R.drawable.entertainment), new Quiz("Geography", R.drawable.geog),new Quiz("Sports",R.drawable.sport),new Quiz("Vocabulary",R.drawable.vocab)};
+    Quiz[] q = new Quiz[]{new Quiz("Science", R.drawable.scie), new Quiz("History", R.drawable.hist), new Quiz("Entertainment", R.drawable.entertainment), new Quiz("Geography", R.drawable.geog),new Quiz("Sports",R.drawable.sport),new Quiz("Vocabulary",R.drawable.vocab)};
 
 
     public QuizFragment() {
@@ -68,7 +68,7 @@ public class QuizFragment extends Fragment {
                 Intent ig=new Intent(getActivity(),DetailClass.class);
                 ig.putExtra(DetailClass.TAGV,namet);
                startActivityForResult(ig,0);
-                //startActivity(ig);
+               // startActivity(ig);
 
             }
         });
@@ -93,15 +93,30 @@ public class QuizFragment extends Fragment {
         return rootView;
 
     }
-
-   /* @Override
-    public void onResume()
+    /*
+    @Override
+    public void onAttach(Context context)
     {
-        super.onResume();
+        super.onAttach(context);
+
         prefs= PreferenceManager.getDefaultSharedPreferences(getContext());
         totscore=prefs.getInt(getString(R.string.saved_high_score),0);
+        Log.d("tagscorechk","score"+totscore);
+        User u=new User(namet,totscore);
+        for(User us:quizTaken)
+        {
+            if(us.getQuizName().equals(namet))
+            {
+                quizTaken.remove(us);
+            }
+        }
+        quizTaken.add(u);
+
     }
     */
+
+
+
     @Override
     public void onActivityResult(int requestCode,int resultCode,Intent data)
     {
@@ -124,6 +139,8 @@ public class QuizFragment extends Fragment {
 
 
     }
+
+
 
 
 

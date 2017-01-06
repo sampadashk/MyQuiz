@@ -11,7 +11,7 @@
 
     <GridView
         android:id="@+id/grd"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:numColumns="auto_fit"
         android:layout_weight="1.0"

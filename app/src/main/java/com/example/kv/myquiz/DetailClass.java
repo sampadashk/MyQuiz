@@ -67,15 +67,11 @@ public class DetailClass extends AppCompatActivity implements View.OnClickListen
     DBHelper dbHelper;
 
     private void setScoreResult(int scoreResult) {
-        //prefs = getDefaultSharedPreferences(getApplicationContext());
-       // SharedPreferences.Editor editor = prefs.edit();
-       // Log.d("scoredetail","score"+scoreResult);
-        //editor.putInt(getString(R.string.saved_high_score),scoreResult);
-       // editor.commit();
+
        Intent data = new Intent(DetailClass.this, MainActivity.class);
         //startActivity(data);
-        data.putExtra(TAGScore, scoreResult);
-        setResult(RESULT_OK, data);
+       data.putExtra(TAGScore, scoreResult);
+       setResult(RESULT_OK, data);
 
     }
 
@@ -109,14 +105,14 @@ public class DetailClass extends AppCompatActivity implements View.OnClickListen
 //           this.dbHelper.insertData(Sci);
         rs = dbHelper.getData(titli);
         backbut.setVisibility(View.INVISIBLE);
-        Log.d("cursorcount", "count" + rs.getCount());
+
         if (rs == null) {
-            Log.d("tagnullchk", "yes");
+
         }
 
         if (rs.getCount() > 0) {
             rs.moveToFirst();
-            Log.d("tagnotnullchk", "yes");
+
 
             String nam = rs.getString(1);
             tvw.setText(nam);
@@ -316,7 +312,7 @@ public class DetailClass extends AppCompatActivity implements View.OnClickListen
 
         }
 
-        Log.d("userse", userSelected);
+
 
         if (userSelected.equals(rs.getString(6))) {
 

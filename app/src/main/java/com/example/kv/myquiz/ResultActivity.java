@@ -42,6 +42,7 @@ public class ResultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.result_layout);
         List<User> resquiz;
+        getSupportActionBar().setTitle("GK Master");
 
        resquiz = (List<User>) getIntent().getSerializableExtra(resfinal);
 
@@ -141,7 +142,7 @@ public class ResultActivity extends AppCompatActivity {
         float per=(total*100)/30;
         comment=(TextView)findViewById(R.id.commenttext);
         ivcomment=(ImageView)findViewById(R.id.imgcom);
-        Log.d("pertag","peris"+per);
+
 
 
         if(per<50)
@@ -195,7 +196,8 @@ public class ResultActivity extends AppCompatActivity {
     {
         Intent shareintent=new Intent(Intent.ACTION_SEND);
         shareintent.setType("text/plain");
-        String sendmsg="My total Score in Quiz is  "+total;
+        shareintent.putExtra(Intent.EXTRA_SUBJECT,"My Quiz Score");
+        String sendmsg="My total Score in Quiz is  "+total+"/30";
         shareintent.putExtra(Intent.EXTRA_TEXT,sendmsg);
         startActivity(Intent.createChooser(shareintent,"Share using"));
         return true;

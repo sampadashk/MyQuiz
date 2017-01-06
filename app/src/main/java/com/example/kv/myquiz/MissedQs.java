@@ -23,6 +23,7 @@ public class MissedQs extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setTitle("GK Master");
         setContentView(R.layout.missed_q);
         missedList= (List<QuizModel>) getIntent().getSerializableExtra(tagmissed);
         LinearLayout lt=(LinearLayout)findViewById(R.id.linear);
@@ -35,13 +36,13 @@ public class MissedQs extends AppCompatActivity {
 
 
             TextView qstext=new TextView(this);
-            qstext.setTextSize(20);
+            qstext.setTextSize(18);
 
 
-            qstext.setText("Q"+i+"\t"+qs+"?");
+            qstext.setText("Q"+i+")"+"\t"+qs+"?");
             TextView anstext=new TextView(this);
-            anstext.setTextSize(20);
-            anstext.setText("Ans"+i+"\t"+ans);
+            anstext.setTextSize(18);
+            anstext.setText("Ans"+i+")"+"\t"+ans);
             lt.addView(qstext);
             lt.addView(anstext);
 
