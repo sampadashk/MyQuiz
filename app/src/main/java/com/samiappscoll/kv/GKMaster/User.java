@@ -1,7 +1,6 @@
-package com.example.kv.myquiz;
+package com.samiappscoll.kv.GKMaster;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 /**
  * Created by KV on 31/12/16.

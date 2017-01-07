@@ -1,10 +1,8 @@
-package com.example.kv.myquiz;
+package com.samiappscoll.kv.GKMaster;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.List;

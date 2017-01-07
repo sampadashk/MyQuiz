@@ -1,4 +1,4 @@
-package com.example.kv.myquiz;
+package com.samiappscoll.kv.GKMaster;
 
 import org.junit.Test;
 

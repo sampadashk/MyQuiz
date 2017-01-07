@@ -1,4 +1,4 @@
-package com.example.kv.myquiz;
+package com.samiappscoll.kv.GKMaster;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

@@ -1,4 +1,4 @@
-package com.example.kv.myquiz;
+package com.samiappscoll.kv.GKMaster;
 
 /**
  * Created by KV on 24/12/16.
