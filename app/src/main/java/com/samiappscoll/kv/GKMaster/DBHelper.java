@@ -18,7 +18,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     DBHelper(Context ct)
     {
-        super(ct,Database_name,null,26);
+        super(ct,Database_name,null,27);
     }
 
     public void onCreate(SQLiteDatabase db)
@@ -82,7 +82,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 new QuizModel("First Olympic Games was held in","Jamaica","Canada","England","Australia","Canada","Sports"),
                 new QuizModel("What was Walt Disney's Mickey Mouse's original name","Manville","Melvin","Mortimer","Murgatroyd","Mortimer","Entertainment"),
                 new QuizModel("which singer has won the most grammys","Georg Solti","Quincy Jones","Alison Krauss","Pierre Boulez","Georg Solti","Entertainment"),
-                new QuizModel("Who won Oscar award best actor winner 2015","Eddie Redmayne","Bradley Cooper","Steve Carell","Michael Keaton","Eddie Redmayne","Entertainment"),
+                new QuizModel("Who won Oscar's best actor award in 2015","Eddie Redmayne","Bradley Cooper","Steve Carell","Michael Keaton","Eddie Redmayne","Entertainment"),
                 new QuizModel("First Sound film THE JAZZ SINGER was released in which year","1927","1925","1920","1915","1927","Entertainment"),
                 new QuizModel("Which movie won OSCARS BEST PICTURE 2016","The Big Short","Brooklyn","Spotlight","Room","Spotlight","Entertainment"),
                 new QuizModel("Permanent hardness of water can be removed by adding","Potassium Permanganate","Chlorine","Bleaching Powder","Washing Soda","Washing Soda","Science"),

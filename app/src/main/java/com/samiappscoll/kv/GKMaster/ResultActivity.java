@@ -1,13 +1,17 @@
 package com.samiappscoll.kv.GKMaster;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.net.URI;
+import java.net.URL;
 import java.util.List;
 
 /**
@@ -43,6 +47,7 @@ public class ResultActivity extends AppCompatActivity {
 
         for(User users:resquiz)
         {
+
 
 
             if(users.QuizName.equals("Science"))
@@ -192,9 +197,21 @@ public class ResultActivity extends AppCompatActivity {
         Intent shareintent=new Intent(Intent.ACTION_SEND);
         shareintent.setType("text/plain");
         shareintent.putExtra(Intent.EXTRA_SUBJECT,"My Quiz Score");
-        String sendmsg="My total Score in Quiz is  "+total+"/30";
-        shareintent.putExtra(Intent.EXTRA_TEXT,sendmsg);
-        startActivity(Intent.createChooser(shareintent,"Share using"));
+        String s1="My total Score in Quiz GK MASTER is  "+total+"/30! Check yours at \n";
+        String add="https://play.google.com/store/apps/details?id=com.samiappscoll.kv.GKMaster";
+        //String s2="<a href=\"" + add + "\">" + add+ "</a>";
+        Uri uri=Uri.parse(add);
+        try {
+            URL url = new URL(uri.toString());
+            //shareintent.putExtra(Intent.EXTRA_TEXT, s1);
+           // String sendmsg = s1 + uri;
+            shareintent.putExtra(Intent.EXTRA_TEXT,s1+" "+url);
+            startActivity(Intent.createChooser(shareintent, "Share using"));
+        }
+        catch (Exception e)
+        {
+
+        }
         return true;
 
     }

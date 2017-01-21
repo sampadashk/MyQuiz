@@ -1,9 +1,11 @@
 package com.samiappscoll.kv.GKMaster;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,8 @@ import android.widget.ImageButton;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import static com.samiappscoll.kv.GKMaster.DetailClass.PREFS_FILE;
 
 /**
  * Created by KV on 24/12/16.
@@ -27,6 +31,7 @@ public class QuizFragment extends Fragment {
     public ArrayList<User> quizTaken;
     String namet;
     ImageButton Resultbut;
+
 
 
 
@@ -62,10 +67,12 @@ public class QuizFragment extends Fragment {
                 Intent ig=new Intent(getActivity(),DetailClass.class);
                 ig.putExtra(DetailClass.TAGV,namet);
                startActivityForResult(ig,0);
-               // startActivity(ig);
+                //startActivity(ig);
+
 
             }
         });
+
 
 
         Resultbut=(ImageButton)rootView.findViewById(R.id.resultbut);
@@ -111,7 +118,7 @@ public class QuizFragment extends Fragment {
 
 
 
-    @Override
+   @Override
     public void onActivityResult(int requestCode,int resultCode,Intent data)
     {
         if(data==null)
@@ -133,6 +140,7 @@ public class QuizFragment extends Fragment {
 
 
     }
+
 
 
 

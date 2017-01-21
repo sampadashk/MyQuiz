@@ -11,21 +11,24 @@
 
     <GridView
         android:id="@+id/grd"
+        android:background="@android:color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:horizontalSpacing="10dp"
         android:numColumns="auto_fit"
         android:layout_weight="1.0"
         android:paddingBottom="10dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:paddingTop="10dp">
+        android:paddingTop="10dp"
+        android:stretchMode="columnWidth">
 
 
     </GridView>
 
     <ImageButton
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="84dp"
         android:src="@drawable/resultsbutton"
 
         android:layout_gravity="center"

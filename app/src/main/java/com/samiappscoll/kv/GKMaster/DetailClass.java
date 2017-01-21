@@ -1,5 +1,6 @@
 package com.samiappscoll.kv.GKMaster;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,6 +12,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +23,8 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import static com.samiappscoll.kv.GKMaster.MainActivity.PREFS_FILE;
+
 /**
  * Created by KV on 25/12/16.
  */
@@ -28,6 +32,8 @@ import java.util.ArrayList;
 public class DetailClass extends AppCompatActivity implements View.OnClickListener {
     public static final String TAGV = "tagvalue";
     public static final String TAGScore = "totalscore";
+    public static final String Tagscorecount="count";
+    public static final String PREFS_FILE = "prefsFile";
 
     ArrayList<QuizModel> missedList;
 
@@ -63,10 +69,15 @@ public class DetailClass extends AppCompatActivity implements View.OnClickListen
     DBHelper dbHelper;
 
     private void setScoreResult(int scoreResult) {
+       // SharedPreferences prefs=getSharedPreferences(PREFS_FILE, Context.MODE_PRIVATE);
+       // SharedPreferences.Editor editor=prefs.edit();
+       // editor.putInt(Tagscorecount, scoreResult);
+       // editor.commit();
+       // Log.d("scoreprefs","score is"+scoreResult);
 
-       Intent data = new Intent(DetailClass.this, MainActivity.class);
+      Intent data = new Intent(DetailClass.this, MainActivity.class);
         //startActivity(data);
-       data.putExtra(TAGScore, scoreResult);
+      data.putExtra(TAGScore, scoreResult);
        setResult(RESULT_OK, data);
 
     }
